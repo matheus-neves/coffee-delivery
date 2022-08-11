@@ -20,9 +20,27 @@
   "plugins": [
     "react",
     "jsx-a11y",
-    "@typescript-eslint"
+    "@typescript-eslint",
+    "simple-import-sort",
+    "import"
   ],
   "rules": {
+    "simple-import-sort/imports": "error",
+    "simple-import-sort/exports": "error",
+    "import/no-unresolved": "error",
+    "import/no-extraneous-dependencies": "off",
+    "react/jsx-filename-extension": [1, { "extensions": [".js", ".jsx", ".ts", ".tsx"] }],
+    "import/extensions": [
+      "error",
+      "ignorePackages",
+      {
+        "js": "never",
+        "jsx": "never",
+        "ts": "never",
+        "tsx": "never"
+      }
+    ],
+    "import/prefer-default-export": "off",
     "react/react-in-jsx-scope": "off",
     "react/prop-types": "off",
     "jsx-a11y/alt-text": [
@@ -40,10 +58,15 @@
   },
   "settings": {
     "react": {
-      "version": "detect",
+      "version": "detect"
     },
     "import/parsers": {
       "@typescript-eslint/parser": [".ts", ".tsx", ".d.ts"]
+    },
+    "import/resolver": {
+      "typescript": {
+        "project": "tsconfig.json"
+      }
     }
   }
 }
