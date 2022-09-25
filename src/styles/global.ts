@@ -25,6 +25,16 @@ export const GlobalStyles = createGlobalStyle`
     font-size: 1rem;
   }
 
+  h1, h2, h3, h4, h5 {
+    font-family: 'Baloo 2', sans-serif;
+    font-weight: 700;
+    color: ${({ theme }) => theme.pallete['black-800']};
+  }
+
+  h1 {
+    font-weight: 800;
+  }
+
   button {
     cursor: pointer;
   }
