@@ -6,12 +6,8 @@ export const Container = styled.div`
   flex-direction: column;
   flex: 1;
 
-  max-width: ${({ theme }) => pxToRem(theme.breakpoints.lg)};
+  max-width: ${pxToRem(1156)}; // 1120 + 32
   height: 100%;
   margin: 0 auto;
-  padding: 0 ${pxToRem(32)};
-
-  @media (max-width: ${({ theme }) => pxToRem(theme.breakpoints.sm)}) {
-    padding: 0 ${pxToRem(16)};
-  }
+  padding: 0 ${pxToRem(16)};
 `;
