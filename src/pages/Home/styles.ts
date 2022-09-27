@@ -91,3 +91,118 @@ export const IconContainer = styled.div<IconContainerProps>`
     margin-right: ${pxToRem(12)};
   }
 `;
+
+export const CoffeeSection = styled.section`
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+
+  h2 {
+    align-self: flex-start;
+    padding: ${pxToRem(32)} 0;
+  }
+`;
+
+export const CoffeeList = styled.ul`
+  list-style: none;
+`;
+
+export const CoffeeContainer = styled.li`
+  background-color: ${({ theme }) => theme.pallete['gray-200']};
+  border-radius: 6px 36px;
+  padding: 0 ${pxToRem(20)} ${pxToRem(20)};
+  max-width: ${pxToRem(256)};
+  width: 100%;
+
+  h3 {
+    font-size: ${pxToRem(20)};
+  }
+`;
+
+export const CoffeeHeader = styled.div`
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+
+  img {
+    width: ${pxToRem(120)};
+    height: ${pxToRem(120)};
+    margin-top: -${pxToRem(20)};
+    margin-bottom: ${pxToRem(12)};
+  }
+
+  div {
+    display: flex;
+    gap: ${pxToRem(4)};
+
+    strong {
+      padding: ${pxToRem(4)} ${pxToRem(8)};
+      border-radius: 100px;
+      font-family: 'Roboto', sans-serif;
+      font-weight: 700;
+      font-size: ${pxToRem(10)};
+      background: ${({ theme }) => theme.pallete['yellow-100']};
+      color: ${({ theme }) => theme.pallete['yellow-700']};
+    }
+  }
+`;
+
+export const CoffeeContent = styled.div`
+  padding: ${pxToRem(16)} 0 ${pxToRem(32)};
+  display: flex;
+  flex-direction: column;
+  gap: ${pxToRem(8)};
+  text-align: center;
+
+  p {
+    font-size: ${pxToRem(14)};
+    color: ${({ theme }) => theme.pallete['gray-800']};
+  }
+`;
+
+export const CoffeeFooter = styled.div`
+  display: flex;
+  justify-content: space-between;
+`;
+
+export const CoffeePrice = styled.span`
+  color: ${({ theme }) => theme.pallete['black-400']};
+  font-size: ${pxToRem(14)};
+
+  strong {
+    font-family: 'Baloo 2', sans-serif;
+    font-weight: 800;
+    font-size: ${pxToRem(24)};
+  }
+`;
+
+export const CoffeeActionsContainer = styled.div`
+  display: flex;
+  align-items: center;
+  gap: ${pxToRem(8)};
+
+  span {
+    font-size: 14px;
+    color: ${({ theme }) => theme.pallete['black-800']};
+  }
+
+  div {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: ${pxToRem(8)};
+    border-radius: 6px;
+
+    width: ${pxToRem(72)};
+    height: ${pxToRem(38)};
+    background: ${({ theme }) => theme.pallete['gray-400']};
+
+    button {
+      display: flex;
+      background: none;
+      border: 0;
+      width: ${pxToRem(14)};
+      height: ${pxToRem(14)};
+    }
+  }
+`;
