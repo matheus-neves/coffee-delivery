@@ -13,7 +13,12 @@ export const GlobalStyles = createGlobalStyle`
     box-shadow: 0 0 2px 2px ${({ theme }) => theme.pallete['gray-400']};
   }
 
+  html {
+    font-size: 62.5%;
+  }
+
   body {
+    font-size: 1.6rem;
     background-color: ${({ theme }) => theme.pallete['gray-100']};
     color: ${({ theme }) => theme.pallete['black-400']};
     -webkit-font-smoothing: antialiased;
@@ -22,7 +27,7 @@ export const GlobalStyles = createGlobalStyle`
   body, input, textarea, button {
     font-family: 'Roboto', sans-serif;
     font-weight: 400;
-    font-size: 1rem;
+    font-size: 1.6rem;
   }
 
   h1, h2, h3, h4, h5 {

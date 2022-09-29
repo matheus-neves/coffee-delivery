@@ -1,5 +1,4 @@
 import { IconContainerProps } from '@pages/Home/types';
-import pxToRem from '@src/utils/pxToRem';
 import styled from 'styled-components';
 
 export const IntroContainer = styled.section`
@@ -7,53 +6,53 @@ export const IntroContainer = styled.section`
   flex-direction: column;
   align-content: space-between;
   margin: 0 auto;
-  padding: ${pxToRem(16)} 0 ${pxToRem(16)} 0;
+  padding: 1.6rem 0 1.6rem 0;
 
   & > div {
-    max-width: 588px;
+    max-width: 58.8rem;
   }
 
   img {
     width: 100%;
-    max-width: 476px;
+    max-width: 47.6rem;
     margin: 0 auto;
     height: fit-content;
   }
 
-  @media (min-width: ${({ theme }) => pxToRem(theme.breakpoints.md)}) {
+  @media (min-width: ${({ theme }) => `${theme.breakpoints.md}px`}) {
     flex-direction: row;
-    padding: ${pxToRem(56)} 0 ${pxToRem(56)} 0;
-    gap: ${pxToRem(56)};
+    padding: 5.6rem 0 5.6rem 0;
+    gap: 5.6rem;
   }
 `;
 
 export const IntroHeader = styled.div`
-  margin-bottom: ${pxToRem(24)};
+  margin-bottom: 2.4rem;
 
   h1 {
-    margin-bottom: ${pxToRem(4)};
-    line-height: ${pxToRem(28)};
+    margin-bottom: 0.4rem;
+    line-height: 2.8rem;
   }
 
   p {
     color: ${({ theme }) => theme.pallete['black-500']};
   }
 
-  @media (min-width: ${({ theme }) => pxToRem(theme.breakpoints.sm)}) {
+  @media (min-width: ${({ theme }) => `${theme.breakpoints.sm}px`}) {
     h1 {
-      font-size: ${pxToRem(48)};
-      line-height: ${pxToRem(58)};
-      margin-bottom: ${pxToRem(16)};
+      font-size: 4.8rem;
+      line-height: 5.8rem;
+      margin-bottom: 1.6rem;
     }
 
     p {
-      font-size: ${pxToRem(20)};
-      line-height: ${pxToRem(26)};
+      font-size: 2rem;
+      line-height: 2.6rem;
     }
   }
 
-  @media (min-width: ${({ theme }) => pxToRem(theme.breakpoints.lg)}) {
-    margin-bottom: ${pxToRem(66)};
+  @media (min-width: ${({ theme }) => `${theme.breakpoints.lg}px`}) {
+    margin-bottom: 6.6rem;
   }
 `;
 
@@ -61,20 +60,20 @@ export const FeatureList = styled.ul`
   list-style: none;
   display: grid;
   grid-template-columns: 1fr;
-  gap: ${pxToRem(10)};
-  max-width: ${pxToRem(600)};
-  margin-bottom: ${pxToRem(24)};
+  gap: 1rem;
+  max-width: 60rem;
+  margin-bottom: 2.4rem;
 
-  @media (min-width: ${({ theme }) => pxToRem(theme.breakpoints.lg)}) {
+  @media (min-width: ${({ theme }) => `${theme.breakpoints.lg}px`}) {
     grid-template-columns: 1fr 1fr;
-    gap: ${pxToRem(20)};
-    column-gap: ${pxToRem(0)};
+    gap: 2rem;
+    column-gap: 0;
   }
 
   li {
     display: flex;
     align-items: center;
-    font-size: ${pxToRem(16)};
+    font-size: 1.6rem;
     color: ${({ theme }) => theme.pallete['black-400']};
   }
 `;
@@ -84,11 +83,11 @@ export const IconContainer = styled.div<IconContainerProps>`
   align-items: center;
 
   svg {
-    min-width: ${pxToRem(32)};
+    min-width: 3.2rem;
     background: ${({ bgColor }) => bgColor};
     border-radius: 50%;
     padding: 8px;
-    margin-right: ${pxToRem(12)};
+    margin-right: 1.2rem;
   }
 `;
 
@@ -99,7 +98,7 @@ export const CoffeeSection = styled.section`
 
   h2 {
     align-self: flex-start;
-    padding: ${pxToRem(32)} 0;
+    padding: 3.2rem 0;
   }
 `;
 
@@ -110,12 +109,12 @@ export const CoffeeList = styled.ul`
 export const CoffeeContainer = styled.li`
   background-color: ${({ theme }) => theme.pallete['gray-200']};
   border-radius: 6px 36px;
-  padding: 0 ${pxToRem(20)} ${pxToRem(20)};
-  max-width: ${pxToRem(256)};
+  padding: 0 2rem 2rem;
+  max-width: 25.6rem;
   width: 100%;
 
   h3 {
-    font-size: ${pxToRem(20)};
+    font-size: 2rem;
   }
 `;
 
@@ -125,22 +124,22 @@ export const CoffeeHeader = styled.div`
   align-items: center;
 
   img {
-    width: ${pxToRem(120)};
-    height: ${pxToRem(120)};
-    margin-top: -${pxToRem(20)};
-    margin-bottom: ${pxToRem(12)};
+    width: 12rem;
+    height: 12rem;
+    margin-top: -2rem;
+    margin-bottom: 1.2rem;
   }
 
   div {
     display: flex;
-    gap: ${pxToRem(4)};
+    gap: 0.4rem;
 
     strong {
-      padding: ${pxToRem(4)} ${pxToRem(8)};
+      padding: 0.4rem 0.8rem;
       border-radius: 100px;
       font-family: 'Roboto', sans-serif;
       font-weight: 700;
-      font-size: ${pxToRem(10)};
+      font-size: 1rem;
       background: ${({ theme }) => theme.pallete['yellow-100']};
       color: ${({ theme }) => theme.pallete['yellow-700']};
     }
@@ -148,14 +147,14 @@ export const CoffeeHeader = styled.div`
 `;
 
 export const CoffeeContent = styled.div`
-  padding: ${pxToRem(16)} 0 ${pxToRem(32)};
+  padding: 1.6rem 0 3.2rem;
   display: flex;
   flex-direction: column;
-  gap: ${pxToRem(8)};
+  gap: 0.8rem;
   text-align: center;
 
   p {
-    font-size: ${pxToRem(14)};
+    font-size: 1.4rem;
     color: ${({ theme }) => theme.pallete['gray-800']};
   }
 `;
@@ -167,22 +166,22 @@ export const CoffeeFooter = styled.div`
 
 export const CoffeePrice = styled.span`
   color: ${({ theme }) => theme.pallete['black-400']};
-  font-size: ${pxToRem(14)};
+  font-size: 1.4rem;
 
   strong {
     font-family: 'Baloo 2', sans-serif;
     font-weight: 800;
-    font-size: ${pxToRem(24)};
+    font-size: 2.4rem;
   }
 `;
 
 export const CoffeeActionsContainer = styled.div`
   display: flex;
   align-items: center;
-  gap: ${pxToRem(8)};
+  gap: 0.8rem;
 
   span {
-    font-size: 14px;
+    font-size: 1.4rem;
     color: ${({ theme }) => theme.pallete['black-800']};
   }
 
@@ -190,19 +189,19 @@ export const CoffeeActionsContainer = styled.div`
     display: flex;
     align-items: center;
     justify-content: center;
-    gap: ${pxToRem(8)};
+    gap: 0.8rem;
     border-radius: 6px;
 
-    width: ${pxToRem(72)};
-    height: ${pxToRem(38)};
+    width: 7.2rem;
+    height: 3.8rem;
     background: ${({ theme }) => theme.pallete['gray-400']};
 
     button {
       display: flex;
       background: none;
       border: 0;
-      width: ${pxToRem(14)};
-      height: ${pxToRem(14)};
+      width: 1.4rem;
+      height: 1.4rem;
     }
   }
 `;
