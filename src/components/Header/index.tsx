@@ -22,7 +22,7 @@ export function Header() {
           <MapPin weight="fill" color={pallete['purple-500']} />
           <span>Porto Alegre, RS</span>
         </LocationIndicator>
-        <CartLink to={'/'} bgColor={pallete['yellow-100']}>
+        <CartLink to={'/'} bgcolor={pallete['yellow-100']}>
           <ShoppingCart weight="fill" color={pallete['yellow-700']} size={22} />
           <span>3</span>
         </CartLink>

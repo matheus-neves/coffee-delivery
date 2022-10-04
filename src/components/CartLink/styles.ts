@@ -10,7 +10,7 @@ export const CartContainer = styled(Link)<CartLinkProps>`
   width: 3.8rem;
   height: 3.8rem;
   padding: 0.8rem;
-  background-color: ${({ bgColor }) => bgColor};
+  background-color: ${({ bgcolor }) => bgcolor};
   border-radius: 4px;
 
   span {
