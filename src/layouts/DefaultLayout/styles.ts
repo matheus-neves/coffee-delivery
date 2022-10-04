@@ -5,13 +5,8 @@ export const Container = styled.div`
   flex-direction: column;
   flex: 1;
 
-  max-width: calc(1120px + 1.6rem);
+  max-width: calc(1120px + 4rem);
   height: 100%;
   margin: 0 auto;
-  padding: 0 1.6rem;
-
-  @media (min-width: ${({ theme }) => `${theme.breakpoints.md}px`}) {
-    max-width: calc(1120px + 2rem);
-    padding: 0 2rem;
-  }
+  padding: 0 2rem;
 `;
