@@ -1,4 +1,4 @@
-import { useCoffeeCard } from '../../context';
+import { useCoffeeCard } from '@components/CoffeeCard/context';
 import { CoffeeCardHeader } from './styles';
 
 export function Header() {

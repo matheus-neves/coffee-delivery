@@ -1,4 +1,4 @@
-import { useCoffeeCard } from '../../context';
+import { useCoffeeCard } from '@components/CoffeeCard/context';
 import { CoffeeCardPrice } from './styles';
 
 export function Price() {
