@@ -1,5 +1,6 @@
 import { CartLink } from '@src/components/CartLink';
-import { Minus, Plus, ShoppingCartSimple } from 'phosphor-react';
+import { CountButton } from '@src/components/CountButton';
+import { ShoppingCartSimple } from 'phosphor-react';
 import { useTheme } from 'styled-components';
 import { CoffeeCardActionsContainer } from './styles';
 
@@ -8,15 +9,7 @@ export function Actions() {
 
   return (
     <CoffeeCardActionsContainer>
-      <div>
-        <button>
-          <Minus size={14} weight="bold" color={pallete['purple-500']} />
-        </button>
-        <span>1</span>
-        <button>
-          <Plus size={14} weight="bold" color={pallete['purple-500']} />
-        </button>
-      </div>
+      <CountButton />
       <CartLink to={'#'} bgcolor={pallete['purple-700']}>
         <ShoppingCartSimple
           weight="fill"
