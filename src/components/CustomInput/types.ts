@@ -2,7 +2,6 @@ import { InputHTMLAttributes } from 'react';
 
 export interface CustomInputTypes
   extends InputHTMLAttributes<HTMLInputElement> {
+  maxwidth?: number;
   optional?: boolean;
 }
-
-export type CustomInputContainerTypes = Pick<CustomInputTypes, 'optional'>;
