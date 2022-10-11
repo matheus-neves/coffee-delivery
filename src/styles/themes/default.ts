@@ -17,8 +17,9 @@ export const defaultTheme = {
     'gray-300': '#EDEDED',
     'gray-400': '#E6E5E5',
     'gray-500': '#D7D5D5',
+    'gray-800': '#8D8686',
 
-    white: '#FFFFFF',
+    white: '#FFFFFF'
   },
   breakpoints: {
     sm: 600,
