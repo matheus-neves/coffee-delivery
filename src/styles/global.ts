@@ -8,11 +8,6 @@ export const GlobalStyles = createGlobalStyle`
     box-sizing: border-box;
   }
 
-  :focus:not(a) {
-    outline: 0;
-    box-shadow: 0 0 2px 2px ${({ theme }) => theme.pallete['gray-400']};
-  }
-
   html {
     font-size: 62.5%;
   }
@@ -27,7 +22,6 @@ export const GlobalStyles = createGlobalStyle`
   body, input, textarea, button {
     font-family: 'Roboto', sans-serif;
     font-weight: 400;
-    font-size: 1.6rem;
   }
 
   h1, h2, h3, h4, h5 {
