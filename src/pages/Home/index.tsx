@@ -1,12 +1,9 @@
 import coffeeIllustrationImg from '@assets/coffee-illustration.png';
+
+import { CoffeeCard } from '@src/components/CoffeeCard';
+
 import {
-  CoffeeActionsContainer,
-  CoffeeContainer,
-  CoffeeContent,
-  CoffeeFooter,
-  CoffeeHeader,
   CoffeeList,
-  CoffeePrice,
   CoffeeSection,
   FeatureList,
   IconContainer,
@@ -14,18 +11,14 @@ import {
   IntroHeader
 } from '@pages/Home/styles';
 import {
-  Coffee,
-  Minus,
+  Coffee as CoffeIcon,
   Package,
-  Plus,
   ShoppingCart,
-  ShoppingCartSimple,
   Timer
 } from 'phosphor-react';
 import { useTheme } from 'styled-components';
 
 import traditionalCoffee from '@assets/coffees/traditional.png';
-import { CartLink } from '@src/components/CartLink';
 
 export function Home() {
   const { pallete } = useTheme();
@@ -43,7 +36,7 @@ export function Home() {
 
           <FeatureList>
             <li>
-              <IconContainer bgColor={pallete['yellow-700']}>
+              <IconContainer bgcolor={pallete['yellow-700']}>
                 <ShoppingCart
                   size={32}
                   weight="fill"
@@ -53,20 +46,24 @@ export function Home() {
               </IconContainer>
             </li>
             <li>
-              <IconContainer bgColor={pallete['black-400']}>
+              <IconContainer bgcolor={pallete['black-400']}>
                 <Package size={32} weight="fill" color={pallete['gray-100']} />
               </IconContainer>
               Packaging keeps the coffee intact
             </li>
             <li>
-              <IconContainer bgColor={pallete['yellow-500']}>
+              <IconContainer bgcolor={pallete['yellow-500']}>
                 <Timer size={32} weight="fill" color={pallete['gray-100']} />
               </IconContainer>
               Fast and tracked delivery
             </li>
             <li>
-              <IconContainer bgColor={pallete['purple-500']}>
-                <Coffee size={32} weight="fill" color={pallete['gray-100']} />
+              <IconContainer bgcolor={pallete['purple-500']}>
+                <CoffeIcon
+                  size={32}
+                  weight="fill"
+                  color={pallete['gray-100']}
+                />
               </IconContainer>
               Coffee arrives fresh to you
             </li>
@@ -76,53 +73,43 @@ export function Home() {
       </IntroContainer>
 
       <CoffeeSection>
-        <h2>Nossos cafés</h2>
-
+        <h2>Our coffees</h2>
         <CoffeeList>
-          <CoffeeContainer>
-            <CoffeeHeader>
-              <img src={traditionalCoffee} alt="" />
-              <div>
-                <strong>Tradicional</strong>
-                <strong>Tradicional</strong>
-              </div>
-            </CoffeeHeader>
-            <CoffeeContent>
-              <h3>Expresso Tradicional</h3>
-              <p>O tradicional café feito com água quente e grãos moídos</p>
-            </CoffeeContent>
-            <CoffeeFooter>
-              <CoffeePrice>
-                R$ <strong>9,90</strong>
-              </CoffeePrice>
-              <CoffeeActionsContainer>
-                <div>
-                  <button>
-                    <Minus
-                      size={14}
-                      weight="bold"
-                      color={pallete['purple-500']}
-                    />
-                  </button>
-                  <span>1</span>
-                  <button>
-                    <Plus
-                      size={14}
-                      weight="bold"
-                      color={pallete['purple-500']}
-                    />
-                  </button>
-                </div>
-                <CartLink to={'#'} bgColor={pallete['purple-700']}>
-                  <ShoppingCartSimple
-                    weight="fill"
-                    color={pallete['gray-200']}
-                    size={22}
-                  />
-                </CartLink>
-              </CoffeeActionsContainer>
-            </CoffeeFooter>
-          </CoffeeContainer>
+          <CoffeeCard
+            description="O tradicional café feito com água quente e grãos moídos"
+            image={traditionalCoffee}
+            price={9.9}
+            tags={['Traditional', 'teste']}
+            title="Expresso Tradicional"
+          />
+          <CoffeeCard
+            description="O tradicional café feito com água quente e grãos moídos"
+            image={traditionalCoffee}
+            price={9.9}
+            tags={['Traditional', 'teste']}
+            title="Expresso Tradicional"
+          />
+          <CoffeeCard
+            description="O tradicional café feito com água quente e grãos moídos"
+            image={traditionalCoffee}
+            price={9.9}
+            tags={['Traditional', 'teste']}
+            title="Expresso Tradicional"
+          />
+          <CoffeeCard
+            description="O tradicional café feito com água quente e grãos moídos"
+            image={traditionalCoffee}
+            price={9.9}
+            tags={['Traditional', 'teste']}
+            title="Expresso Tradicional"
+          />
+          <CoffeeCard
+            description="O tradicional café feito com água quente e grãos moídos"
+            image={traditionalCoffee}
+            price={9.9}
+            tags={['Traditional', 'teste']}
+            title="Expresso Tradicional"
+          />
         </CoffeeList>
       </CoffeeSection>
     </main>

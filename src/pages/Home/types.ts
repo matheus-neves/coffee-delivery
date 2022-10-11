@@ -1,3 +1,3 @@
 export interface IconContainerProps {
-  bgColor: string;
+  bgcolor: string;
 }
