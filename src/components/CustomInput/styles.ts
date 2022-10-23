@@ -1,11 +1,11 @@
-import { CustomInputTypes } from '@components/CustomInput/types';
+import { CustomInputContainerTypes } from '@components/CustomInput/types';
 import styled from 'styled-components';
 
-export const CustomInputContainer = styled.div<CustomInputTypes>`
+export const CustomInputContainer = styled.div<CustomInputContainerTypes>`
   position: relative;
 
   @media (min-width: ${({ theme }) => `${theme.breakpoints.md}px`}) {
-    max-width: ${({ maxwidth }) => `${maxwidth}rem`};
+    max-width: ${({ $maxWidth }) => `${$maxWidth}rem`};
   }
 
   input {
