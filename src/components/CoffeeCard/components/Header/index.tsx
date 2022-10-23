@@ -2,11 +2,11 @@ import { useCoffeeCard } from '@components/CoffeeCard/context';
 import { CoffeeCardHeader } from './styles';
 
 export function Header() {
-  const { tags, image } = useCoffeeCard();
+  const { tags, src } = useCoffeeCard();
 
   return (
     <CoffeeCardHeader>
-      <img src={image} alt="" />
+      <img src={src} alt="" />
       <div>
         {tags?.map(tag => (
           <strong key={tag}>{tag}</strong>

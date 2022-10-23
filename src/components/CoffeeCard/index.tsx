@@ -1,5 +1,5 @@
-import { CoffeeCardProps } from '@components/CoffeeCard/types';
 import { Card } from './context';
+import { CoffeeCardProps } from './types';
 
 export function CoffeeCard({ ...data }: CoffeeCardProps) {
   return (

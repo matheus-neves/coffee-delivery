@@ -18,17 +18,19 @@ const CoffeeCardContext = createContext<CoffeeCardContextProps | undefined>(
 );
 
 function Card({ children, data }: CoffeeCardProviderProps) {
-  const { description, image, price, tags, title } = data;
+  const { description, src, price, tags, title, id, formattedPrice } = data;
 
   const value = useMemo(
     () => ({
+      id,
       description,
-      image,
+      src,
       price,
       tags,
-      title
+      title,
+      formattedPrice
     }),
-    [description, image, price, tags, title]
+    [description, id, price, src, tags, title, formattedPrice]
   );
 
   return (
