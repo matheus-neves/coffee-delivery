@@ -1,17 +1,22 @@
-import { CountButtonContainer } from '@components/CountButton/styles';
+import { CountButtonContainer } from '@src/components/CounterButton/styles';
+import { CountButtonProps } from '@src/components/CounterButton/types';
 import { Minus, Plus } from 'phosphor-react';
 import { useTheme } from 'styled-components';
 
-export function CountButton() {
+export function CounterButton({
+  counter,
+  onAddCounter,
+  onDecreaseCounter
+}: CountButtonProps) {
   const { pallete } = useTheme();
 
   return (
     <CountButtonContainer>
-      <button>
+      <button onClick={onDecreaseCounter}>
         <Minus size={14} weight="bold" color={pallete['purple-500']} />
       </button>
-      <span>1</span>
-      <button>
+      <span>{counter}</span>
+      <button onClick={onAddCounter}>
         <Plus size={14} weight="bold" color={pallete['purple-500']} />
       </button>
     </CountButtonContainer>
