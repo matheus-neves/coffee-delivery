@@ -2,9 +2,9 @@ import { Checkout } from '@pages/Checkout';
 import { Home } from '@pages/Home';
 import { DefaultLayout } from '@src/layouts/DefaultLayout';
 import { Success } from '@src/pages/Success';
-import { createBrowserRouter } from 'react-router-dom';
+import { createBrowserRouter, RouteObject } from 'react-router-dom';
 
-export const router = createBrowserRouter([
+const routes: RouteObject[] = [
   {
     path: '/',
     element: <DefaultLayout />,
@@ -23,4 +23,6 @@ export const router = createBrowserRouter([
       }
     ]
   }
-]);
+];
+
+export const router = createBrowserRouter(routes);
