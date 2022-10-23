@@ -33,17 +33,7 @@ export function CartContextProvider({ children }: CartProviderProps) {
   }, 0);
 
   const addItemToCart = useCallback((data: CartItem) => {
-    const formattedPrice = new Intl.NumberFormat('en-US', {
-      style: 'currency',
-      currency: 'USD'
-    }).format(data.price);
-
-    dispatch(
-      addNewItemAction({
-        ...data,
-        formattedPrice
-      })
-    );
+    dispatch(addNewItemAction(data));
   }, []);
 
   const removeItemFromCart = useCallback((id: number) => {
