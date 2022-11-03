@@ -13,6 +13,8 @@ import {
 import { CardRadio } from '@src/components/CardRadio';
 import { CartItem } from '@src/components/CartItem';
 import { CustomInput } from '@src/components/CustomInput';
+import { useCartContext } from '@src/contexts/CartContext';
+import { formatNumber } from '@src/utils/formatNumber';
 import {
   Bank,
   CreditCard,
@@ -20,19 +22,49 @@ import {
   MapPinLine,
   Money
 } from 'phosphor-react';
+import { SubmitHandler, useForm } from 'react-hook-form';
 import { useTheme } from 'styled-components';
+import { IFormInput } from './types';
 
 export function Checkout() {
   const { pallete } = useTheme();
 
-  const handleSubmit = (e: React.FormEvent<HTMLFormElement>) => {
-    e.preventDefault();
+  const { cartItems, total: totalCart } = useCartContext();
 
-    console.log(e.target.payment.value);
+  const cartIsEmpty = cartItems.length === 0;
+
+  const shipment = totalCart ? 10 : 0;
+
+  const formattedShipment = formatNumber({
+    value: shipment
+  });
+
+  const total = shipment + totalCart;
+
+  const formattedTotalCart = formatNumber({
+    value: totalCart
+  });
+
+  const formattedTotal = formatNumber({
+    value: total
+  });
+
+  const { register, handleSubmit } = useForm<IFormInput>();
+
+  const onSubmit: SubmitHandler<IFormInput> = data => {
+    console.log(data);
   };
 
+  if (cartIsEmpty) {
+    return (
+      <CheckoutContainerForm>
+        <p>Carrinho vazio</p>
+      </CheckoutContainerForm>
+    );
+  }
+
   return (
-    <CheckoutContainerForm onSubmit={handleSubmit}>
+    <CheckoutContainerForm onSubmit={handleSubmit(onSubmit)}>
       <section>
         <h2>Complete seu pedido</h2>
         <Paper>
@@ -48,16 +80,48 @@ export function Checkout() {
             </div>
           </PaperHeader>
           <Form>
-            <CustomInput placeholder="CEP" />
-            <CustomInput placeholder="Rua" />
+            <CustomInput
+              placeholder="Zip code"
+              name="zipCode"
+              register={register}
+            />
+            <CustomInput
+              placeholder="Street"
+              name="street"
+              register={register}
+            />
             <div>
-              <CustomInput placeholder="Número" />
-              <CustomInput placeholder="Complemento" optional maxwidth={34.8} />
+              <CustomInput
+                placeholder="Number"
+                name="number"
+                register={register}
+              />
+              <CustomInput
+                placeholder="Complement"
+                name="complement"
+                optional
+                $maxWidth={34.8}
+                register={register}
+              />
             </div>
             <div>
-              <CustomInput placeholder="Bairro" />
-              <CustomInput placeholder="Cidade" maxwidth={27.6} />
-              <CustomInput placeholder="UF" maxwidth={6} />
+              <CustomInput
+                placeholder="District"
+                name="district"
+                register={register}
+              />
+              <CustomInput
+                placeholder="City"
+                name="city"
+                $maxWidth={27.6}
+                register={register}
+              />
+              <CustomInput
+                placeholder="State"
+                name="state"
+                $maxWidth={6}
+                register={register}
+              />
             </div>
           </Form>
         </Paper>
@@ -92,6 +156,7 @@ export function Checkout() {
                     size={16}
                   />
                 }
+                register={register}
               />
               <CardRadio
                 label="Debit card"
@@ -105,6 +170,7 @@ export function Checkout() {
                     size={16}
                   />
                 }
+                register={register}
               />
               <CardRadio
                 label="Cash"
@@ -118,6 +184,7 @@ export function Checkout() {
                     size={16}
                   />
                 }
+                register={register}
               />
             </BoxSelectCard>
           </div>
@@ -128,28 +195,33 @@ export function Checkout() {
         <h2>Cafés selecionados</h2>
         <Paper borderRadius="6px 44px">
           <CartList>
-            <CartItem />
-            <Divider />
-            <CartItem />
-            <Divider />
-            <CartItem />
-            <Divider />
-            <CartItem />
-            <Divider />
+            {cartItems.map(item => (
+              <>
+                <CartItem
+                  key={item.id}
+                  id={item.id}
+                  quantity={item.quantity}
+                  src={item.src}
+                  title={item.title}
+                  price={item.formattedPrice}
+                />
+                <Divider />
+              </>
+            ))}
           </CartList>
 
           <TotalList>
             <li>
               <TotalLabel>Total de itens</TotalLabel>
-              <TotalValue>$29.70</TotalValue>
+              <TotalValue>{formattedTotalCart}</TotalValue>
             </li>
             <li>
-              <TotalLabel>Entrega</TotalLabel>
-              <TotalValue>$3.50</TotalValue>
+              <TotalLabel>Shipment</TotalLabel>
+              <TotalValue>{formattedShipment}</TotalValue>
             </li>
             <li>
               <strong>Total</strong>
-              <strong>$33.20</strong>
+              <strong>{formattedTotal}</strong>
             </li>
           </TotalList>
 
