@@ -1,30 +1,38 @@
-import CoffeeImg from '@assets/coffees/american-espresso.png';
 import {
   ActionsContainer,
   CartItemContainer,
   DeleteButton
 } from '@components/CartItem/styles';
-import { CountButton } from '@components/CountButton';
+import { CartItemProps } from '@components/CartItem/types';
+import { CounterButton } from '@src/components/CounterButton';
+import { useCartContext } from '@src/contexts/CartContext';
 import { Trash } from 'phosphor-react';
 import { useTheme } from 'styled-components';
 
-export function CartItem() {
+export function CartItem({ quantity, src, title, price, id }: CartItemProps) {
   const { pallete } = useTheme();
+
+  const { increaseItemQuantity, decreaseItemQuantity, removeItemFromCart } =
+    useCartContext();
 
   return (
     <CartItemContainer>
-      <img src={CoffeeImg} alt="" />
+      <img src={src} alt={title} />
       <div>
-        <h3>Expresso Tradicional</h3>
+        <h3>{title}</h3>
         <ActionsContainer>
-          <CountButton />
-          <DeleteButton>
+          <CounterButton
+            counter={quantity}
+            onAddCounter={() => increaseItemQuantity(id)}
+            onDecreaseCounter={() => decreaseItemQuantity(id)}
+          />
+          <DeleteButton onClick={() => removeItemFromCart(id)}>
             <Trash weight="regular" color={pallete['purple-500']} size={16} />
             <span>Remover</span>
           </DeleteButton>
         </ActionsContainer>
       </div>
-      <strong>$100.90</strong>
+      <strong>{price}</strong>
     </CartItemContainer>
   );
 }
