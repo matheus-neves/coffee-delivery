@@ -20,17 +20,4 @@ export const LocationIndicatorContainer = styled.div<LocationIndicatorContainerT
   svg {
     margin: 0 auto;
   }
-
-  @keyframes rotation {
-    from {
-      transform: rotate(0deg);
-    }
-    to {
-      transform: rotate(360deg);
-    }
-  }
-
-  .spinner {
-    animation: rotation 0.6s infinite linear;
-  }
 `;
