@@ -6,9 +6,13 @@ import { ThemeProvider } from 'styled-components';
 import { CartContextProvider } from './contexts/CartContext';
 import { UserLocationContextProvider } from './contexts/UserLocationContext';
 
+import { ToastContainer } from 'react-toastify';
+import 'react-toastify/dist/ReactToastify.css';
+
 export function App() {
   return (
     <ThemeProvider theme={defaultTheme}>
+      <ToastContainer />
       <GlobalStyles />
       <UserLocationContextProvider>
         <CartContextProvider>
