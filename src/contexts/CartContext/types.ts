@@ -10,6 +10,9 @@ export interface CartItem {
 export interface CartContextType {
   cartItems: CartItem[];
   total: number;
+  loading: {
+    cartId: number | null;
+  };
   addItemToCart: (data: CartItem) => void;
   removeItemFromCart: (id: number) => void;
   increaseItemQuantity: (id: number) => void;

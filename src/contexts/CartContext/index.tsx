@@ -1,8 +1,8 @@
 import {
-  addNewItemAction,
   decreaseItemQuantityAction,
   increaseItemQuantityAction,
-  removeItemAction
+  removeItemAction,
+  saveNewItemToCart
 } from '@src/reducers/cart/actions';
 import { cartReducer } from '@src/reducers/cart/reducer';
 import {
@@ -22,10 +22,13 @@ interface CartProviderProps {
 
 export function CartContextProvider({ children }: CartProviderProps) {
   const [cartState, dispatch] = useReducer(cartReducer, {
-    cartItems: []
+    cartItems: [],
+    loading: {
+      cartId: null
+    }
   });
 
-  const { cartItems } = cartState;
+  const { cartItems, loading } = cartState;
 
   const total = cartItems.reduce((acc, cartItem) => {
     const sum = acc + cartItem.price * cartItem.quantity;
@@ -33,7 +36,7 @@ export function CartContextProvider({ children }: CartProviderProps) {
   }, 0);
 
   const addItemToCart = useCallback((data: CartItem) => {
-    dispatch(addNewItemAction(data));
+    saveNewItemToCart(data, dispatch);
   }, []);
 
   const removeItemFromCart = useCallback((id: number) => {
@@ -48,8 +51,6 @@ export function CartContextProvider({ children }: CartProviderProps) {
     dispatch(decreaseItemQuantityAction(id));
   }, []);
 
-  console.log(cartState);
-
   const value = useMemo(
     () => ({
       cartItems,
@@ -57,7 +58,8 @@ export function CartContextProvider({ children }: CartProviderProps) {
       addItemToCart,
       increaseItemQuantity,
       decreaseItemQuantity,
-      removeItemFromCart
+      removeItemFromCart,
+      loading
     }),
     [
       addItemToCart,
@@ -65,7 +67,8 @@ export function CartContextProvider({ children }: CartProviderProps) {
       total,
       increaseItemQuantity,
       decreaseItemQuantity,
-      removeItemFromCart
+      removeItemFromCart,
+      loading
     ]
   );
 

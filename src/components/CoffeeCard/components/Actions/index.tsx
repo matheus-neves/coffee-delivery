@@ -1,18 +1,19 @@
-import { CartLink } from '@src/components/CartLink';
 import { CounterButton } from '@src/components/CounterButton';
 import { useCartContext } from '@src/contexts/CartContext';
-import { ShoppingCartSimple } from 'phosphor-react';
+import { ShoppingCartSimple, Spinner } from 'phosphor-react';
 import { useCallback, useState } from 'react';
 import { useTheme } from 'styled-components';
 import { useCoffeeCard } from '../../context';
-import { CoffeeCardActionsContainer } from './styles';
+import { ActionButton, CoffeeCardActionsContainer } from './styles';
 
 export function Actions() {
   const { pallete } = useTheme();
   const [counter, setCounter] = useState(1);
 
   const { title, price, src, id, formattedPrice } = useCoffeeCard();
-  const { addItemToCart } = useCartContext();
+  const { addItemToCart, loading } = useCartContext();
+
+  const isLoading = loading.cartId === id;
 
   const handleDecreaseCounter = useCallback(() => {
     if (counter > 1) {
@@ -24,6 +25,19 @@ export function Actions() {
     setCounter(state => state + 1);
   }, []);
 
+  function handleAddItemToCart() {
+    addItemToCart({
+      id,
+      quantity: counter,
+      title,
+      src,
+      price,
+      formattedPrice
+    });
+
+    setCounter(1);
+  }
+
   return (
     <CoffeeCardActionsContainer>
       <CounterButton
@@ -31,26 +45,22 @@ export function Actions() {
         onDecreaseCounter={handleDecreaseCounter}
         onAddCounter={handleAddCounter}
       />
-      <CartLink
-        to="/checkout"
-        bgcolor={pallete['purple-700']}
-        onClick={() =>
-          addItemToCart({
-            id,
-            quantity: counter,
-            title,
-            src,
-            price,
-            formattedPrice
-          })
-        }
-      >
-        <ShoppingCartSimple
-          weight="fill"
-          color={pallete['gray-200']}
-          size={22}
-        />
-      </CartLink>
+      <ActionButton onClick={handleAddItemToCart} disabled={isLoading}>
+        {isLoading ? (
+          <Spinner
+            weight="bold"
+            size={22}
+            className="spinner"
+            color={pallete['gray-200']}
+          />
+        ) : (
+          <ShoppingCartSimple
+            weight="fill"
+            color={pallete['gray-200']}
+            size={22}
+          />
+        )}
+      </ActionButton>
     </CoffeeCardActionsContainer>
   );
 }
