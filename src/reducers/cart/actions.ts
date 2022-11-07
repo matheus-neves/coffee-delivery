@@ -1,22 +1,41 @@
-import { CartItem } from './types';
+import {
+  CartActionTypes,
+  CartItem,
+  DecreaseItemQuantityAction,
+  IncreaseItemQuantityAction,
+  RemoveNewItemAction
+} from './types';
+
 
 export enum ActionTypes {
-  ADD_NEW_ITEM = 'ADD_NEW_ITEM',
+  ADD_NEW_ITEM_REQUESTED = 'ADD_NEW_ITEM_REQUESTED',
+  ADD_NEW_ITEM_SUCCESS = 'ADD_NEW_ITEM_SUCCESS',
+  ADD_NEW_ITEM_FAILED = 'ADD_NEW_ITEM_FAILED',
   REMOVE_ITEM = 'REMOVE_ITEM',
   INCREASE_ITEM_QUANTITY = 'INCREASE_ITEM_QUANTITY',
   DECREASE_ITEM_QUANTITY = 'DECREASE_ITEM_QUANTITY'
 }
 
-export function addNewItemAction(newItem: CartItem) {
-  return {
-    type: ActionTypes.ADD_NEW_ITEM,
+export async function saveNewItemToCart(
+  newItem: CartItem,
+  dispatch: React.Dispatch<CartActionTypes>
+) {
+  dispatch({
+    type: ActionTypes.ADD_NEW_ITEM_REQUESTED,
     payload: {
       newItem
     }
-  };
+  });
+
+  // simulate api
+  setTimeout(() => {
+    dispatch({
+      type: ActionTypes.ADD_NEW_ITEM_SUCCESS
+    });
+  }, 1000);
 }
 
-export function removeItemAction(id: number) {
+export function removeItemAction(id: number): RemoveNewItemAction {
   return {
     type: ActionTypes.REMOVE_ITEM,
     payload: {
@@ -25,7 +44,9 @@ export function removeItemAction(id: number) {
   };
 }
 
-export function increaseItemQuantityAction(id: number) {
+export function increaseItemQuantityAction(
+  id: number
+): IncreaseItemQuantityAction {
   return {
     type: ActionTypes.INCREASE_ITEM_QUANTITY,
     payload: {
@@ -34,7 +55,9 @@ export function increaseItemQuantityAction(id: number) {
   };
 }
 
-export function decreaseItemQuantityAction(id: number) {
+export function decreaseItemQuantityAction(
+  id: number
+): DecreaseItemQuantityAction {
   return {
     type: ActionTypes.DECREASE_ITEM_QUANTITY,
     payload: {

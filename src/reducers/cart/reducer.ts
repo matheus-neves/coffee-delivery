@@ -1,20 +1,45 @@
 import { produce } from 'immer';
 import { ActionTypes } from './actions';
-import { CartState } from './types';
+import { CartActionTypes, CartState } from './types';
 
-export function cartReducer(state: CartState, action: any) {
+export const INITIAL_CART_STATE: CartState = {
+  cartItems: [],
+  loading: {
+    cartId: null
+  }
+};
+
+export function cartReducer(
+  state = INITIAL_CART_STATE,
+  action: CartActionTypes
+) {
   switch (action.type) {
-    case ActionTypes.ADD_NEW_ITEM:
+    case ActionTypes.ADD_NEW_ITEM_REQUESTED:
       return produce(state, draft => {
         const foundIndex = draft.cartItems.findIndex(
           item => item.id === action.payload.newItem.id
         );
+
         if (foundIndex !== -1) {
           draft.cartItems[foundIndex] = action.payload.newItem;
+          draft.loading = {
+            cartId: action.payload.newItem.id
+          };
+
           return;
         }
 
         draft.cartItems.push(action.payload.newItem);
+        draft.loading = {
+          cartId: action.payload.newItem.id
+        };
+      });
+
+    case ActionTypes.ADD_NEW_ITEM_SUCCESS:
+      return produce(state, draft => {
+        draft.loading = {
+          cartId: null
+        };
       });
 
     case ActionTypes.REMOVE_ITEM:
