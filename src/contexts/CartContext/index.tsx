@@ -1,3 +1,4 @@
+import { AddToCartSuccess } from '@src/components/Toast/AddToCartSuccess';
 import {
   decreaseItemQuantityAction,
   increaseItemQuantityAction,
@@ -12,6 +13,7 @@ import {
   useMemo,
   useReducer
 } from 'react';
+import { toast } from 'react-toastify';
 import { CartContextType, CartItem } from './types';
 
 export const CartContext = createContext({} as CartContextType);
@@ -35,8 +37,12 @@ export function CartContextProvider({ children }: CartProviderProps) {
     return (acc = Number(parseFloat(String(sum)).toFixed(2)));
   }, 0);
 
-  const addItemToCart = useCallback((data: CartItem) => {
-    saveNewItemToCart(data, dispatch);
+  const addItemToCart = useCallback(async (data: CartItem) => {
+    const newItem = await saveNewItemToCart(data, dispatch);
+    if (!newItem) return;
+    toast.success(
+      <AddToCartSuccess quantity={newItem.quantity} title={newItem.title} />
+    );
   }, []);
 
   const removeItemFromCart = useCallback((id: number) => {

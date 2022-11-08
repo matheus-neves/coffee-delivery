@@ -6,7 +6,6 @@ import {
   RemoveNewItemAction
 } from './types';
 
-
 export enum ActionTypes {
   ADD_NEW_ITEM_REQUESTED = 'ADD_NEW_ITEM_REQUESTED',
   ADD_NEW_ITEM_SUCCESS = 'ADD_NEW_ITEM_SUCCESS',
@@ -19,7 +18,7 @@ export enum ActionTypes {
 export async function saveNewItemToCart(
   newItem: CartItem,
   dispatch: React.Dispatch<CartActionTypes>
-) {
+): Promise<CartItem | void> {
   dispatch({
     type: ActionTypes.ADD_NEW_ITEM_REQUESTED,
     payload: {
@@ -28,11 +27,14 @@ export async function saveNewItemToCart(
   });
 
   // simulate api
-  setTimeout(() => {
-    dispatch({
-      type: ActionTypes.ADD_NEW_ITEM_SUCCESS
-    });
-  }, 1000);
+  return new Promise(resolve => {
+    setTimeout(() => {
+      dispatch({
+        type: ActionTypes.ADD_NEW_ITEM_SUCCESS
+      });
+      resolve(newItem);
+    }, 1000);
+  });
 }
 
 export function removeItemAction(id: number): RemoveNewItemAction {
