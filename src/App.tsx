@@ -12,7 +12,11 @@ import 'react-toastify/dist/ReactToastify.css';
 export function App() {
   return (
     <ThemeProvider theme={defaultTheme}>
-      <ToastContainer />
+      <ToastContainer
+        style={{
+          top: 80
+        }}
+      />
       <GlobalStyles />
       <UserLocationContextProvider>
         <CartContextProvider>
