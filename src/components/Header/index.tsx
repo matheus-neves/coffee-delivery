@@ -62,7 +62,7 @@ export function Header() {
                 color={pallete['yellow-700']}
                 size={22}
               />
-              <span>{cartItems.length}</span>
+              <span>{cartItems?.length}</span>
             </CartLink>
           </ActionsContainer>
         </HeaderContent>
