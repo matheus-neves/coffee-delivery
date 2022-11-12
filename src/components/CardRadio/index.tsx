@@ -7,10 +7,11 @@ export function CardRadio({
   name,
   label,
   Icon,
-  register
+  register,
+  error
 }: CardRadioTypes) {
   return (
-    <CardRadioContainer htmlFor={id}>
+    <CardRadioContainer htmlFor={id} error={error}>
       <input type="radio" id={id} value={value} {...register(name)} />
       <div>
         {Icon}

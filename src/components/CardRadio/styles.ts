@@ -1,6 +1,7 @@
 import styled from 'styled-components';
+import { CardRadioContainerTypes } from './types';
 
-export const CardRadioContainer = styled.label`
+export const CardRadioContainer = styled.label<CardRadioContainerTypes>`
   display: flex;
   width: 100%;
   height: 5.1rem;
@@ -21,6 +22,9 @@ export const CardRadioContainer = styled.label`
 
     color: ${({ theme }) => theme.pallete['black-400']};
     text-transform: uppercase;
+
+    outline: 1px solid
+      ${({ theme, error }) => (error ? theme.pallete['red'] : 'transparent')};
 
     &:hover {
       background-color: ${({ theme }) => theme.pallete['gray-500']};
