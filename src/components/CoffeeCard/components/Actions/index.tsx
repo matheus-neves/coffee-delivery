@@ -13,7 +13,7 @@ export function Actions() {
   const { title, price, src, id, formattedPrice } = useCoffeeCard();
   const { addItemToCart, loading } = useCartContext();
 
-  const isLoading = loading.cartId === id;
+  const isLoading = loading.cartItem?.id === id;
 
   const handleDecreaseCounter = useCallback(() => {
     if (counter > 1) {

@@ -3,26 +3,26 @@ import {
   CartItem,
   DecreaseItemQuantityAction,
   IncreaseItemQuantityAction,
-  RemoveNewItemAction
+  RemoveItemAction
 } from './types';
 
 export enum ActionTypes {
-  ADD_NEW_ITEM_REQUESTED = 'ADD_NEW_ITEM_REQUESTED',
-  ADD_NEW_ITEM_SUCCESS = 'ADD_NEW_ITEM_SUCCESS',
-  ADD_NEW_ITEM_FAILED = 'ADD_NEW_ITEM_FAILED',
+  ADD_ITEM_REQUESTED = 'ADD_ITEM_REQUESTED',
+  ADD_ITEM_SUCCESS = 'ADD_ITEM_SUCCESS',
+  ADD_ITEM_FAILED = 'ADD_ITEM_FAILED',
   REMOVE_ITEM = 'REMOVE_ITEM',
   INCREASE_ITEM_QUANTITY = 'INCREASE_ITEM_QUANTITY',
   DECREASE_ITEM_QUANTITY = 'DECREASE_ITEM_QUANTITY'
 }
 
 export async function saveNewItemToCart(
-  newItem: CartItem,
+  cartItem: CartItem,
   dispatch: React.Dispatch<CartActionTypes>
 ): Promise<CartItem | void> {
   dispatch({
-    type: ActionTypes.ADD_NEW_ITEM_REQUESTED,
+    type: ActionTypes.ADD_ITEM_REQUESTED,
     payload: {
-      newItem
+      cartItem
     }
   });
 
@@ -30,14 +30,17 @@ export async function saveNewItemToCart(
   return new Promise(resolve => {
     setTimeout(() => {
       dispatch({
-        type: ActionTypes.ADD_NEW_ITEM_SUCCESS
+        type: ActionTypes.ADD_ITEM_SUCCESS,
+        payload: {
+          cartItem
+        }
       });
-      resolve(newItem);
+      resolve(cartItem);
     }, 1000);
   });
 }
 
-export function removeItemAction(id: number): RemoveNewItemAction {
+export function removeItemAction(id: number): RemoveItemAction {
   return {
     type: ActionTypes.REMOVE_ITEM,
     payload: {

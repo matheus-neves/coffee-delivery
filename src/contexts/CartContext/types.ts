@@ -11,7 +11,7 @@ export interface CartContextType {
   cartItems: CartItem[];
   total: number;
   loading: {
-    cartId: number | null;
+    cartItem: CartItem | null;
   };
   addItemToCart: (data: CartItem) => void;
   removeItemFromCart: (id: number) => void;

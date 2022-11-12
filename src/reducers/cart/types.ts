@@ -12,30 +12,33 @@ export interface CartItem {
 export interface CartState {
   cartItems: CartItem[];
   loading: {
-    cartId: number | null;
+    cartItem: CartItem | null;
   };
 }
 
-export type AddNewItemRequestedAction = {
-  type: typeof ActionTypes.ADD_NEW_ITEM_REQUESTED;
+export type AddItemRequestedAction = {
+  type: typeof ActionTypes.ADD_ITEM_REQUESTED;
   payload: {
-    newItem: CartItem;
+    cartItem: CartItem;
   };
 };
 
-export type RemoveNewItemAction = {
+export type RemoveItemAction = {
   type: typeof ActionTypes.REMOVE_ITEM;
   payload: {
     id: number;
   };
 };
 
-export type AddNewItemSuccessAction = {
-  type: typeof ActionTypes.ADD_NEW_ITEM_SUCCESS;
+export type AddItemSuccessAction = {
+  type: typeof ActionTypes.ADD_ITEM_SUCCESS;
+  payload: {
+    cartItem: CartItem;
+  };
 };
 
-export type AddNewItemFailedAction = {
-  type: typeof ActionTypes.ADD_NEW_ITEM_FAILED;
+export type AddItemFailedAction = {
+  type: typeof ActionTypes.ADD_ITEM_FAILED;
 };
 
 export type IncreaseItemQuantityAction = {
@@ -53,9 +56,9 @@ export type DecreaseItemQuantityAction = {
 };
 
 export type CartActionTypes =
-  | RemoveNewItemAction
+  | RemoveItemAction
   | IncreaseItemQuantityAction
   | DecreaseItemQuantityAction
-  | AddNewItemRequestedAction
-  | AddNewItemSuccessAction
-  | AddNewItemFailedAction;
+  | AddItemRequestedAction
+  | AddItemSuccessAction
+  | AddItemFailedAction;

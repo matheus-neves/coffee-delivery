@@ -26,12 +26,15 @@ import { SubmitHandler, useForm } from 'react-hook-form';
 import { useTheme } from 'styled-components';
 import { IFormInput } from './types';
 
+import { zodResolver } from '@hookform/resolvers/zod';
+import { ValidationSchema, validationSchema } from './Form/schema';
+
 export function Checkout() {
   const { pallete } = useTheme();
 
   const { cartItems, total: totalCart } = useCartContext();
 
-  const cartIsEmpty = cartItems.length === 0;
+  const cartIsEmpty = cartItems?.length === 0;
 
   const shipment = totalCart ? 10 : 0;
 
@@ -49,9 +52,18 @@ export function Checkout() {
     value: total
   });
 
-  const { register, handleSubmit } = useForm<IFormInput>();
+  const {
+    register,
+    handleSubmit,
+    formState: { errors }
+  } = useForm<IFormInput>({
+    resolver: zodResolver(validationSchema),
+    criteriaMode: 'all'
+  });
 
-  const onSubmit: SubmitHandler<IFormInput> = data => {
+  console.log(errors);
+
+  const onSubmit: SubmitHandler<ValidationSchema> = data => {
     console.log(data);
   };
 
@@ -84,17 +96,20 @@ export function Checkout() {
               placeholder="Zip code"
               name="zipCode"
               register={register}
+              error={errors.zipCode?.message}
             />
             <CustomInput
               placeholder="Street"
               name="street"
               register={register}
+              error={errors.street?.message}
             />
             <div>
               <CustomInput
                 placeholder="Number"
                 name="number"
                 register={register}
+                error={errors.number?.message}
               />
               <CustomInput
                 placeholder="Complement"
@@ -102,6 +117,7 @@ export function Checkout() {
                 optional
                 $maxWidth={34.8}
                 register={register}
+                error={errors.complement?.message}
               />
             </div>
             <div>
@@ -109,18 +125,21 @@ export function Checkout() {
                 placeholder="District"
                 name="district"
                 register={register}
+                error={errors.district?.message}
               />
               <CustomInput
                 placeholder="City"
                 name="city"
                 $maxWidth={27.6}
                 register={register}
+                error={errors.city?.message}
               />
               <CustomInput
                 placeholder="State"
                 name="state"
                 $maxWidth={6}
                 register={register}
+                error={errors.state?.message}
               />
             </div>
           </Form>
@@ -157,6 +176,7 @@ export function Checkout() {
                   />
                 }
                 register={register}
+                error={errors.payment?.message}
               />
               <CardRadio
                 label="Debit card"
@@ -171,6 +191,7 @@ export function Checkout() {
                   />
                 }
                 register={register}
+                error={errors.payment?.message}
               />
               <CardRadio
                 label="Cash"
@@ -185,6 +206,7 @@ export function Checkout() {
                   />
                 }
                 register={register}
+                error={errors.payment?.message}
               />
             </BoxSelectCard>
           </div>

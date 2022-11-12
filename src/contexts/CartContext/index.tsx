@@ -26,7 +26,7 @@ export function CartContextProvider({ children }: CartProviderProps) {
   const [cartState, dispatch] = useReducer(cartReducer, {
     cartItems: [],
     loading: {
-      cartId: null
+      cartItem: null
     }
   });
 
