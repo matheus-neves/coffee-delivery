@@ -14,16 +14,20 @@ export const CustomInputContainer = styled.div<CustomInputContainerTypes>`
     padding-right: ${({ optional }) => (optional ? '6.2rem' : '1.2rem')};
     background: ${({ theme }) => theme.pallete['gray-300']};
     color: ${({ theme }) => theme.pallete['black-400']};
-    border: 1px solid ${({ theme }) => theme.pallete['gray-400']};
+    border: 1px solid
+      ${({ theme, error }) =>
+        error ? theme.pallete['red'] : theme.pallete['gray-400']};
     border-radius: 4px;
 
     ::placeholder {
-      ${({ theme }) => theme.pallete['gray-800']};
+      color: ${({ theme, error }) =>
+        error ? theme.pallete['red'] : theme.pallete['gray-800']};
     }
 
     &:focus {
       outline: 0;
-      border-color: ${({ theme }) => theme.pallete['yellow-700']};
+      border-color: ${({ theme, error }) =>
+        error ? theme.pallete['red'] : theme.pallete['yellow-700']};
     }
   }
 

@@ -6,11 +6,17 @@ export function CustomInput({
   $maxWidth,
   register,
   name,
+  error,
+  placeholder,
   ...rest
 }: CustomInputTypes) {
   return (
-    <CustomInputContainer optional={optional} $maxWidth={$maxWidth}>
-      <input {...register(name)} {...rest} />
+    <CustomInputContainer
+      optional={optional}
+      $maxWidth={$maxWidth}
+      error={error}
+    >
+      <input {...register(name)} {...rest} placeholder={error || placeholder} />
       {optional && <span>Optional</span>}
     </CustomInputContainer>
   );
