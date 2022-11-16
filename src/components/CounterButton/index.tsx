@@ -12,11 +12,11 @@ export function CounterButton({
 
   return (
     <CountButtonContainer>
-      <button onClick={onDecreaseCounter}>
+      <button type="button" onClick={onDecreaseCounter}>
         <Minus size={14} weight="bold" color={pallete['purple-500']} />
       </button>
       <span>{counter}</span>
-      <button onClick={onAddCounter}>
+      <button type="button" onClick={onAddCounter}>
         <Plus size={14} weight="bold" color={pallete['purple-500']} />
       </button>
     </CountButtonContainer>
