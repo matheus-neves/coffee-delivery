@@ -27,6 +27,7 @@ import { useTheme } from 'styled-components';
 import { IFormInput } from './types';
 
 import { zodResolver } from '@hookform/resolvers/zod';
+import { EmptyCart } from '@src/components/EmptyCart';
 import { ValidationSchema, validationSchema } from './Form/schema';
 
 export function Checkout() {
@@ -57,8 +58,7 @@ export function Checkout() {
     handleSubmit,
     formState: { errors }
   } = useForm<IFormInput>({
-    resolver: zodResolver(validationSchema),
-    criteriaMode: 'all'
+    resolver: zodResolver(validationSchema)
   });
 
   console.log(errors);
@@ -70,7 +70,7 @@ export function Checkout() {
   if (cartIsEmpty) {
     return (
       <CheckoutContainerForm>
-        <p>Carrinho vazio</p>
+        <EmptyCart />
       </CheckoutContainerForm>
     );
   }
@@ -94,12 +94,14 @@ export function Checkout() {
           <Form>
             <CustomInput
               placeholder="Zip code"
+              maxLength={10}
               name="zipCode"
               register={register}
               error={errors.zipCode?.message}
             />
             <CustomInput
               placeholder="Street"
+              maxLength={50}
               name="street"
               register={register}
               error={errors.street?.message}
@@ -107,12 +109,14 @@ export function Checkout() {
             <div>
               <CustomInput
                 placeholder="Number"
+                maxLength={20}
                 name="number"
                 register={register}
                 error={errors.number?.message}
               />
               <CustomInput
                 placeholder="Complement"
+                maxLength={20}
                 name="complement"
                 optional
                 $maxWidth={34.8}
@@ -123,12 +127,14 @@ export function Checkout() {
             <div>
               <CustomInput
                 placeholder="District"
+                maxLength={20}
                 name="district"
                 register={register}
                 error={errors.district?.message}
               />
               <CustomInput
                 placeholder="City"
+                maxLength={15}
                 name="city"
                 $maxWidth={27.6}
                 register={register}
@@ -136,6 +142,7 @@ export function Checkout() {
               />
               <CustomInput
                 placeholder="State"
+                maxLength={5}
                 name="state"
                 $maxWidth={6}
                 register={register}
