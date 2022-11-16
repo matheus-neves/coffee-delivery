@@ -28,16 +28,19 @@ import { IFormInput } from './types';
 
 import { zodResolver } from '@hookform/resolvers/zod';
 import { EmptyCart } from '@src/components/EmptyCart';
+import { useUserLocationContext } from '@src/contexts/UserLocationContext';
 import { ValidationSchema, validationSchema } from './Form/schema';
 
 export function Checkout() {
   const { pallete } = useTheme();
 
+  const { location } = useUserLocationContext();
+
   const { cartItems, total: totalCart } = useCartContext();
 
   const cartIsEmpty = cartItems?.length === 0;
 
-  const shipment = totalCart ? 10 : 0;
+  const shipment = totalCart ? 10 : 0; // mock shipment
 
   const formattedShipment = formatNumber({
     value: shipment
@@ -58,13 +61,22 @@ export function Checkout() {
     handleSubmit,
     formState: { errors }
   } = useForm<IFormInput>({
-    resolver: zodResolver(validationSchema)
+    resolver: zodResolver(validationSchema),
+    defaultValues: {
+      city: location?.data?.city,
+      district: location?.data?.county,
+      street: location?.data?.street,
+      zipCode: location?.data?.postcode,
+      number: location?.data?.number,
+      state: location?.data?.stateCode
+    }
   });
 
   console.log(errors);
+  console.log(location);
 
   const onSubmit: SubmitHandler<ValidationSchema> = data => {
-    console.log(data);
+    console.log('data: ', data);
   };
 
   if (cartIsEmpty) {
