@@ -19,6 +19,8 @@ export const defaultTheme = {
     'gray-500': '#D7D5D5',
     'gray-800': '#8D8686',
 
+    red: '#E02B27',
+
     white: '#FFFFFF'
   },
   breakpoints: {
