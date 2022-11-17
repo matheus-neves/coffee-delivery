@@ -66,36 +66,6 @@ export const CartList = styled.ul`
   padding-right: 0.6rem;
 `;
 
-export const TotalList = styled.ul`
-  display: flex;
-  flex-direction: column;
-  gap: 1.2rem;
-
-  padding-right: 0.6rem;
-  padding: 2.4rem 0;
-
-  li {
-    display: flex;
-    justify-content: space-between;
-  }
-
-  span {
-    color: ${({ theme }) => theme.pallete['black-400']};
-  }
-
-  strong {
-    font-size: 2rem;
-  }
-`;
-
-export const TotalLabel = styled.span`
-  font-size: 1.4rem;
-`;
-
-export const TotalValue = styled.span`
-  font-size: 1.6rem;
-`;
-
 interface PaperProps {
   borderRadius?: string;
   maxwidth?: number;
@@ -148,7 +118,7 @@ export const PaperHeader = styled.div`
   }
 `;
 
-export const Form = styled.fieldset`
+export const FormFieldset = styled.fieldset`
   display: flex;
   flex-direction: column;
   gap: 1.6rem;

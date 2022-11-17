@@ -3,18 +3,14 @@ import {
   CartList,
   CheckoutContainerForm,
   Divider,
-  Form,
+  FormFieldset,
   Paper,
-  PaperHeader,
-  TotalLabel,
-  TotalList,
-  TotalValue
+  PaperHeader
 } from '@pages/Checkout/styles';
 import { CardRadio } from '@src/components/CardRadio';
 import { CartItem } from '@src/components/CartItem';
 import { CustomInput } from '@src/components/CustomInput';
 import { useCartContext } from '@src/contexts/CartContext';
-import { formatNumber } from '@src/utils/formatNumber';
 import {
   Bank,
   CreditCard,
@@ -24,12 +20,13 @@ import {
 } from 'phosphor-react';
 import { SubmitHandler, useForm } from 'react-hook-form';
 import { useTheme } from 'styled-components';
-import { IFormInput } from './types';
 
 import { zodResolver } from '@hookform/resolvers/zod';
 import { EmptyCart } from '@src/components/EmptyCart';
 import { useUserLocationContext } from '@src/contexts/UserLocationContext';
-import { ValidationSchema, validationSchema } from './Form/schema';
+import { TotalList } from './components/TotalList';
+import { validationSchema, ValidationSchema } from './Form/schema';
+import { IFormInput } from './types';
 
 export function Checkout() {
   const { pallete } = useTheme();
@@ -37,24 +34,7 @@ export function Checkout() {
   const { location } = useUserLocationContext();
 
   const { cartItems, total: totalCart } = useCartContext();
-
   const cartIsEmpty = cartItems?.length === 0;
-
-  const shipment = totalCart ? 10 : 0; // mock shipment
-
-  const formattedShipment = formatNumber({
-    value: shipment
-  });
-
-  const total = shipment + totalCart;
-
-  const formattedTotalCart = formatNumber({
-    value: totalCart
-  });
-
-  const formattedTotal = formatNumber({
-    value: total
-  });
 
   const {
     register,
@@ -71,9 +51,6 @@ export function Checkout() {
       state: location?.data?.stateCode
     }
   });
-
-  console.log(errors);
-  console.log(location);
 
   const onSubmit: SubmitHandler<ValidationSchema> = data => {
     console.log('data: ', data);
@@ -103,7 +80,7 @@ export function Checkout() {
               <p>Informe o endereço onde deseja receber seu pedido</p>
             </div>
           </PaperHeader>
-          <Form>
+          <FormFieldset>
             <CustomInput
               placeholder="Zip code"
               maxLength={10}
@@ -161,7 +138,7 @@ export function Checkout() {
                 error={errors.state?.message}
               />
             </div>
-          </Form>
+          </FormFieldset>
         </Paper>
 
         <Paper>
@@ -239,7 +216,7 @@ export function Checkout() {
             {cartItems.map(item => (
               <>
                 <CartItem
-                  key={item.id}
+                  key={item.title}
                   id={item.id}
                   quantity={item.quantity}
                   src={item.src}
@@ -251,20 +228,7 @@ export function Checkout() {
             ))}
           </CartList>
 
-          <TotalList>
-            <li>
-              <TotalLabel>Total de itens</TotalLabel>
-              <TotalValue>{formattedTotalCart}</TotalValue>
-            </li>
-            <li>
-              <TotalLabel>Shipment</TotalLabel>
-              <TotalValue>{formattedShipment}</TotalValue>
-            </li>
-            <li>
-              <strong>Total</strong>
-              <strong>{formattedTotal}</strong>
-            </li>
-          </TotalList>
+          <TotalList totalCart={totalCart} />
 
           <button type="submit">Confirmar pedido</button>
         </Paper>
