@@ -5,11 +5,12 @@ import {
   removeItemAction,
   saveNewItemToCart
 } from '@src/reducers/cart/actions';
-import { cartReducer } from '@src/reducers/cart/reducer';
+import { cartReducer, INITIAL_CART_STATE } from '@src/reducers/cart/reducer';
 import {
   createContext,
   useCallback,
   useContext,
+  useEffect,
   useMemo,
   useReducer
 } from 'react';
@@ -23,14 +24,37 @@ interface CartProviderProps {
 }
 
 export function CartContextProvider({ children }: CartProviderProps) {
-  const [cartState, dispatch] = useReducer(cartReducer, {
-    cartItems: [],
-    loading: {
-      cartItem: null
+  const [cartState, dispatch] = useReducer(
+    cartReducer,
+    {
+      INITIAL_CART_STATE
+    },
+    () => {
+      const storedCartAsJSON = localStorage.getItem(
+        '@coffee-delivery:cart-1.0.0'
+      );
+
+      if (!storedCartAsJSON) {
+        return INITIAL_CART_STATE;
+      }
+
+      const parsedCart: CartItem[] = JSON.parse(storedCartAsJSON);
+
+      return {
+        cartItems: parsedCart,
+        loading: {
+          cartItem: null
+        }
+      };
     }
-  });
+  );
 
   const { cartItems, loading } = cartState;
+
+  useEffect(() => {
+    const cartDataJSON = JSON.stringify(cartItems);
+    localStorage.setItem('@coffee-delivery:cart-1.0.0', cartDataJSON);
+  }, [cartItems]);
 
   const total = cartItems.reduce((acc, cartItem) => {
     const sum = acc + cartItem.price * cartItem.quantity;
