@@ -15,8 +15,8 @@ export function Success() {
   return (
     <SuccessContainer>
       <SuccessHeader>
-        <h1>Uhu! Pedido confirmado</h1>
-        <p>Agora é so aguardar que logo o café chegará até você</p>
+        <h1>Uhu! Your order has been confirmed!</h1>
+        <p>Now just wait for the coffee to come to you soon</p>
       </SuccessHeader>
       <SuccessContent>
         <ul>
@@ -26,7 +26,7 @@ export function Success() {
             </IconWrapper>
             <div>
               <p>
-                Entrega em <strong>Rua João Daniel Martinelli, 102</strong>
+                Delivery at <strong>Rua João Daniel Martinelli, 102</strong>
               </p>
               <p>Farrapos - Porto Alegre, RS</p>
             </div>
@@ -36,7 +36,7 @@ export function Success() {
               <Timer weight="fill" color="#fff" />
             </IconWrapper>
             <div>
-              <span>Previsão de entrega</span>
+              <span>Delivery forecast</span>
               <strong>20 min - 30 min</strong>
             </div>
           </li>
@@ -45,7 +45,7 @@ export function Success() {
               <CurrencyDollar weight="fill" color="#fff" />
             </IconWrapper>
             <div>
-              <span>Pagamento na entrega</span>
+              <span>Payment on delivery</span>
               <strong>Cartão de Crédito</strong>
             </div>
           </li>

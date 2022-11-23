@@ -21,7 +21,7 @@ export function TotalList({ totalCart }: { totalCart: number }) {
   return (
     <TotalListContainer>
       <li>
-        <TotalLabel>Total de itens</TotalLabel>
+        <TotalLabel>Total items</TotalLabel>
         <TotalValue>{formattedTotalCart}</TotalValue>
       </li>
       <li>

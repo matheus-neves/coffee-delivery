@@ -67,7 +67,7 @@ export function Checkout() {
   return (
     <CheckoutContainerForm onSubmit={handleSubmit(onSubmit)}>
       <section>
-        <h2>Complete seu pedido</h2>
+        <h2>Finish your order</h2>
         <Paper>
           <PaperHeader>
             <MapPinLine
@@ -76,8 +76,8 @@ export function Checkout() {
               size={22}
             />
             <div>
-              <h3>Endereço de entrega</h3>
-              <p>Informe o endereço onde deseja receber seu pedido</p>
+              <h3>Delivery address</h3>
+              <p>Inform the address where you want to receive your order</p>
             </div>
           </PaperHeader>
           <FormFieldset>
@@ -150,10 +150,9 @@ export function Checkout() {
                 size={22}
               />
               <div>
-                <h3>Pagamento</h3>
+                <h3>Payment</h3>
                 <p>
-                  O pagamento é feito na entrega. Escolha a forma que deseja
-                  pagar
+                  Payment is made on delivery. Choose the way you want to pay
                 </p>
               </div>
             </PaperHeader>
@@ -210,7 +209,7 @@ export function Checkout() {
       </section>
 
       <section>
-        <h2>Cafés selecionados</h2>
+        <h2>Selected coffees</h2>
         <Paper borderRadius="6px 44px">
           <CartList>
             {cartItems.map(item => (
@@ -230,7 +229,7 @@ export function Checkout() {
 
           <TotalList totalCart={totalCart} />
 
-          <button type="submit">Confirmar pedido</button>
+          <button type="submit">Confirm order</button>
         </Paper>
       </section>
     </CheckoutContainerForm>
