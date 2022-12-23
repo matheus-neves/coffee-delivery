@@ -4,6 +4,7 @@ import {
   CheckoutContainerForm,
   Divider,
   FormFieldset,
+  OrderSubmitButton,
   Paper,
   PaperHeader
 } from '@pages/Checkout/styles';
@@ -16,24 +17,30 @@ import {
   CreditCard,
   CurrencyDollar,
   MapPinLine,
-  Money
+  Money,
+  Spinner
 } from 'phosphor-react';
 import { SubmitHandler, useForm } from 'react-hook-form';
 import { useTheme } from 'styled-components';
 
 import { zodResolver } from '@hookform/resolvers/zod';
 import { EmptyCart } from '@src/components/EmptyCart';
+import { useOrderContext } from '@src/contexts/OrderContext';
 import { useUserLocationContext } from '@src/contexts/UserLocationContext';
+import { useNavigate } from 'react-router-dom';
 import { TotalList } from './components/TotalList';
-import { validationSchema, ValidationSchema } from './Form/schema';
+import { ValidationSchema, validationSchema } from './Form/schema';
 import { IFormInput } from './types';
 
 export function Checkout() {
   const { pallete } = useTheme();
 
+  const navigate = useNavigate();
+
   const { location } = useUserLocationContext();
 
-  const { cartItems, total: totalCart } = useCartContext();
+  const { cartItems, totalPriceItems, shipment, clearCart } = useCartContext();
+  const { finishOrder, loading } = useOrderContext();
   const cartIsEmpty = cartItems?.length === 0;
 
   const {
@@ -52,8 +59,22 @@ export function Checkout() {
     }
   });
 
-  const onSubmit: SubmitHandler<ValidationSchema> = data => {
-    console.log('data: ', data);
+  const onSubmit: SubmitHandler<ValidationSchema> = async data => {
+    const order = {
+      payment: {
+        type: data.payment,
+        totalProducts: totalPriceItems,
+        shipment
+      },
+      deliveryAddress: {
+        ...data
+      },
+      products: cartItems
+    };
+
+    await finishOrder(order);
+    clearCart();
+    navigate('/checkout/success');
   };
 
   if (cartIsEmpty) {
@@ -162,7 +183,7 @@ export function Checkout() {
                 label="Credit card"
                 id="payment-credit"
                 name="payment"
-                value="payment-credit"
+                value="credit"
                 Icon={
                   <CreditCard
                     weight="regular"
@@ -177,7 +198,7 @@ export function Checkout() {
                 label="Debit card"
                 id="payment-debit"
                 name="payment"
-                value="payment-debit"
+                value="debit"
                 Icon={
                   <Bank
                     weight="regular"
@@ -192,7 +213,7 @@ export function Checkout() {
                 label="Cash"
                 id="payment-cash"
                 name="payment"
-                value="payment-cash"
+                value="cash"
                 Icon={
                   <Money
                     weight="regular"
@@ -227,9 +248,15 @@ export function Checkout() {
             ))}
           </CartList>
 
-          <TotalList totalCart={totalCart} />
+          <TotalList />
 
-          <button type="submit">Confirm order</button>
+          <OrderSubmitButton type="submit" disabled={loading}>
+            {loading ? (
+              <Spinner weight="bold" size={24} className="spinner" />
+            ) : (
+              'Confirm order'
+            )}
+          </OrderSubmitButton>
         </Paper>
       </section>
     </CheckoutContainerForm>

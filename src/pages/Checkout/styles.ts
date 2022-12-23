@@ -26,24 +26,28 @@ export const CheckoutContainerForm = styled.form`
     font-size: 1.8rem;
     margin-bottom: 1.5rem;
   }
+`;
 
-  button[type='submit'] {
-    width: 100%;
-    height: 4.6rem;
-    padding: 1.2rem 0.8rem;
-    background-color: #dbac2c;
-    color: #fff;
-    border-radius: 6px;
+export const OrderSubmitButton = styled.button`
+  width: 100%;
+  height: 4.6rem;
+  padding: 1.2rem 0.8rem;
+  background-color: ${({ theme }) => theme.pallete['yellow-500']};
+  color: #fff;
+  border-radius: 6px;
 
-    text-transform: uppercase;
+  text-transform: uppercase;
 
-    font-size: 1.4rem;
-    font-weight: 700;
-    border: 0;
+  font-size: 1.4rem;
+  font-weight: 700;
+  border: 0;
 
-    &:hover {
-      background-color: #c47f17;
-    }
+  &:hover {
+    background-color: ${({ theme }) => theme.pallete['yellow-700']};
+  }
+
+  &:disabled {
+    cursor: not-allowed;
   }
 `;
 
