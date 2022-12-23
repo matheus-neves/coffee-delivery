@@ -9,7 +9,7 @@ export const SuccessContainer = styled.div`
   padding: 2rem 0 4rem;
 
   @media (min-width: ${({ theme }) => `${theme.breakpoints.md}px`}) {
-    padding: 8rem 0 0;
+    padding: 8rem 0 4rem;
   }
 
   img {

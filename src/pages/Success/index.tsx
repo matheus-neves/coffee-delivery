@@ -5,12 +5,14 @@ import {
   SuccessContent,
   SuccessHeader
 } from '@pages/Success/styles';
+import { useOrderContext } from '@src/contexts/OrderContext';
 
 import { CurrencyDollar, MapPin, Timer } from 'phosphor-react';
 import { useTheme } from 'styled-components';
 
 export function Success() {
   const { pallete } = useTheme();
+  const { deliveryAddress, payment } = useOrderContext();
 
   return (
     <SuccessContainer>
@@ -26,9 +28,15 @@ export function Success() {
             </IconWrapper>
             <div>
               <p>
-                Delivery at <strong>Rua João Daniel Martinelli, 102</strong>
+                Delivery at{' '}
+                <strong>
+                  {deliveryAddress?.street}, {deliveryAddress?.number}
+                </strong>
               </p>
-              <p>Farrapos - Porto Alegre, RS</p>
+              <p>
+                {deliveryAddress?.district} - {deliveryAddress?.city},{' '}
+                {deliveryAddress?.state}
+              </p>
             </div>
           </li>
           <li>
@@ -46,7 +54,7 @@ export function Success() {
             </IconWrapper>
             <div>
               <span>Payment on delivery</span>
-              <strong>Cartão de Crédito</strong>
+              <strong>{payment?.type}</strong>
             </div>
           </li>
         </ul>
