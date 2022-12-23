@@ -55,10 +55,15 @@ export type DecreaseItemQuantityAction = {
   };
 };
 
+export type ClearCartAction = {
+  type: typeof ActionTypes.CLEAR_CART;
+};
+
 export type CartActionTypes =
   | RemoveItemAction
   | IncreaseItemQuantityAction
   | DecreaseItemQuantityAction
   | AddItemRequestedAction
   | AddItemSuccessAction
-  | AddItemFailedAction;
+  | AddItemFailedAction
+  | ClearCartAction;

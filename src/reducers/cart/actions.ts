@@ -1,6 +1,7 @@
 import {
   CartActionTypes,
   CartItem,
+  ClearCartAction,
   DecreaseItemQuantityAction,
   IncreaseItemQuantityAction,
   RemoveItemAction
@@ -12,7 +13,8 @@ export enum ActionTypes {
   ADD_ITEM_FAILED = 'ADD_ITEM_FAILED',
   REMOVE_ITEM = 'REMOVE_ITEM',
   INCREASE_ITEM_QUANTITY = 'INCREASE_ITEM_QUANTITY',
-  DECREASE_ITEM_QUANTITY = 'DECREASE_ITEM_QUANTITY'
+  DECREASE_ITEM_QUANTITY = 'DECREASE_ITEM_QUANTITY',
+  CLEAR_CART = 'CLEAR_CART'
 }
 
 export async function saveNewItemToCart(
@@ -68,5 +70,11 @@ export function decreaseItemQuantityAction(
     payload: {
       id
     }
+  };
+}
+
+export function clearCartAction(): ClearCartAction {
+  return {
+    type: ActionTypes.CLEAR_CART
   };
 }

@@ -1,5 +1,6 @@
 import { AddToCartSuccess } from '@src/components/Toast/AddToCartSuccess';
 import {
+  clearCartAction,
   decreaseItemQuantityAction,
   increaseItemQuantityAction,
   removeItemAction,
@@ -56,10 +57,14 @@ export function CartContextProvider({ children }: CartProviderProps) {
     localStorage.setItem('@coffee-delivery:cart-1.0.0', cartDataJSON);
   }, [cartItems]);
 
-  const total = cartItems.reduce((acc, cartItem) => {
+  const totalPriceItems = cartItems.reduce((acc, cartItem) => {
     const sum = acc + cartItem.price * cartItem.quantity;
     return (acc = Number(parseFloat(String(sum)).toFixed(2)));
   }, 0);
+
+  const shipment = totalPriceItems ? 10 : 0; // mock shipment
+
+  const total = shipment + totalPriceItems;
 
   const addItemToCart = useCallback(async (data: CartItem) => {
     const newItem = await saveNewItemToCart(data, dispatch);
@@ -81,24 +86,35 @@ export function CartContextProvider({ children }: CartProviderProps) {
     dispatch(decreaseItemQuantityAction(id));
   }, []);
 
+  const clearCart = useCallback(() => {
+    dispatch(clearCartAction());
+    localStorage.removeItem('@coffee-delivery:cart-1.0.0');
+  }, []);
+
   const value = useMemo(
     () => ({
       cartItems,
-      total,
       addItemToCart,
       increaseItemQuantity,
       decreaseItemQuantity,
       removeItemFromCart,
-      loading
+      loading,
+      shipment,
+      totalPriceItems,
+      total,
+      clearCart
     }),
     [
       addItemToCart,
       cartItems,
-      total,
       increaseItemQuantity,
       decreaseItemQuantity,
       removeItemFromCart,
-      loading
+      loading,
+      shipment,
+      totalPriceItems,
+      total,
+      clearCart
     ]
   );
 

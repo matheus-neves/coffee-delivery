@@ -9,7 +9,9 @@ export interface CartItem {
 
 export interface CartContextType {
   cartItems: CartItem[];
+  totalPriceItems: number;
   total: number;
+  shipment: number;
   loading: {
     cartItem: CartItem | null;
   };
@@ -17,4 +19,5 @@ export interface CartContextType {
   removeItemFromCart: (id: number) => void;
   increaseItemQuantity: (id: number) => void;
   decreaseItemQuantity: (id: number) => void;
+  clearCart: () => void;
 }

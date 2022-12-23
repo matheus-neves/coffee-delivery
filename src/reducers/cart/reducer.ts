@@ -73,6 +73,10 @@ export function cartReducer(
         }
         draft.cartItems[foundIndex].quantity = itemQtd - 1;
       });
+
+    case ActionTypes.CLEAR_CART:
+      return INITIAL_CART_STATE;
+
     default:
       return state;
   }
