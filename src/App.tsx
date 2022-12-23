@@ -4,6 +4,7 @@ import { defaultTheme } from '@styles/themes/default';
 import { RouterProvider } from 'react-router-dom';
 import { ThemeProvider } from 'styled-components';
 import { CartContextProvider } from './contexts/CartContext';
+import { OrderContextProvider } from './contexts/OrderContext';
 import { UserLocationContextProvider } from './contexts/UserLocationContext';
 
 import { ToastContainer } from 'react-toastify';
@@ -18,11 +19,13 @@ export function App() {
         }}
       />
       <GlobalStyles />
-      <UserLocationContextProvider>
-        <CartContextProvider>
-          <RouterProvider router={router} />
-        </CartContextProvider>
-      </UserLocationContextProvider>
+      <OrderContextProvider>
+        <UserLocationContextProvider>
+          <CartContextProvider>
+            <RouterProvider router={router} />
+          </CartContextProvider>
+        </UserLocationContextProvider>
+      </OrderContextProvider>
     </ThemeProvider>
   );
 }
