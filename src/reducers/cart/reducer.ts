@@ -27,10 +27,10 @@ export function cartReducer(
           item => item.id === action.payload.cartItem.id
         );
 
-        if (foundIndex !== -1) {
+        if (foundIndex >= 0) {
           draft.cartItems[foundIndex] = action.payload.cartItem;
           draft.loading = {
-            cartItem: action.payload.cartItem
+            cartItem: null
           };
 
           return;
