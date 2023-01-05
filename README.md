@@ -1,13 +1,10 @@
+<p align="center"><img width="1000" src=".github/demo.gif"/></p>
 
 ---
 <h3 align="center">
   Coffee Delivery
 </h3>
-
----
-
-<p align="center"><img width="1000" src=".github/demo.gif"/></p>
-
+<br>
 
 <p align="center">
   <a href="https://github.com/matheus-neves">
@@ -62,9 +59,9 @@ The main objective of the challenge is to develop an application to manage a sho
 
 1. Clone the repository: `git@github.com:matheus-neves/coffee-delivery.git`
 2. Access the directory: `cd coffee-delivery`
-3. Rename the .env-example file to the .env found in `/src`
+3. Duplicate the .env-example file found in `/src`, after renaming it to .env
 4. You'll need to create an API key at https://www.geoapify.com
-5. After you got the key, open the .env file and add this on `VITE_API_GEOAPIFY_KEY`.
+5. After you got the key, open the .env file that you had created and add this on `VITE_API_GEOAPIFY_KEY`.
 6. Install the dependencies: `yarn`
 7. Run the app: `yarn dev`
 
