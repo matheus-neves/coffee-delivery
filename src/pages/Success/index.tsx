@@ -7,17 +7,29 @@ import {
 } from '@pages/Success/styles';
 import { useOrderContext } from '@src/contexts/OrderContext';
 
+import { motion } from 'framer-motion';
+
 import { CurrencyDollar, MapPin, Timer } from 'phosphor-react';
+import { useEffect } from 'react';
 import { useTheme } from 'styled-components';
 
 export function Success() {
   const { pallete } = useTheme();
   const { deliveryAddress, payment } = useOrderContext();
 
+  useEffect(() => {
+    window.scrollTo(0, 0);
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, []);
+
   return (
-    <SuccessContainer>
+    <SuccessContainer
+      initial={{ opacity: 0 }}
+      animate={{ opacity: 1 }}
+      transition={{ duration: 1 }}
+    >
       <SuccessHeader>
-        <h1>Uhu! Your order has been confirmed!</h1>
+        <h1>Wohooo! Your order has been confirmed!</h1>
         <p>Now just wait for the coffee to come to you soon</p>
       </SuccessHeader>
       <SuccessContent>
@@ -28,7 +40,7 @@ export function Success() {
             </IconWrapper>
             <div>
               <p>
-                Delivery at{' '}
+                Deliver to{' '}
                 <strong>
                   {deliveryAddress?.street}, {deliveryAddress?.number}
                 </strong>
@@ -44,7 +56,7 @@ export function Success() {
               <Timer weight="fill" color="#fff" />
             </IconWrapper>
             <div>
-              <span>Delivery forecast</span>
+              <span>Expected delivery</span>
               <strong>20 min - 30 min</strong>
             </div>
           </li>
@@ -58,7 +70,17 @@ export function Success() {
             </div>
           </li>
         </ul>
-        <img src={deliveryImage} alt="Delivery Illustration" />
+        <motion.img
+          src={deliveryImage}
+          alt="Delivery Illustration"
+          initial={{ translateX: -150, opacity: 0 }}
+          viewport={{ once: true }}
+          whileInView={{
+            translateX: 0,
+            opacity: 1,
+            transition: { stiffness: 100, duration: 1, ease: 'easeOut' }
+          }}
+        />
       </SuccessContent>
     </SuccessContainer>
   );
