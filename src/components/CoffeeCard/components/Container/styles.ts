@@ -1,6 +1,7 @@
+import { motion } from 'framer-motion';
 import styled from 'styled-components';
 
-export const CoffeeCardContainer = styled.li`
+export const CoffeeCardContainer = styled(motion.li)`
   display: flex;
   flex-direction: column;
   justify-content: space-between;
