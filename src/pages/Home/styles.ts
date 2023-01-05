@@ -1,7 +1,8 @@
 import { IconContainerProps } from '@pages/Home/types';
+import { motion } from 'framer-motion';
 import styled from 'styled-components';
 
-export const IntroContainer = styled.section`
+export const IntroContainer = styled(motion.section)`
   display: flex;
   flex-direction: column;
   align-content: space-between;
@@ -26,7 +27,7 @@ export const IntroContainer = styled.section`
   }
 `;
 
-export const IntroHeader = styled.div`
+export const IntroHeader = styled(motion.div)`
   margin-bottom: 2.4rem;
 
   h1 {
@@ -57,7 +58,7 @@ export const IntroHeader = styled.div`
   }
 `;
 
-export const FeatureList = styled.ul`
+export const FeatureList = styled(motion.ul)`
   list-style: none;
   display: grid;
   grid-template-columns: 1fr;
@@ -92,7 +93,7 @@ export const IconContainer = styled.div<IconContainerProps>`
   }
 `;
 
-export const CoffeeSection = styled.section`
+export const CoffeeSection = styled(motion.section)`
   display: flex;
   flex-direction: column;
   align-items: center;
@@ -108,7 +109,7 @@ export const CoffeeSection = styled.section`
   }
 `;
 
-export const CoffeeList = styled.ul`
+export const CoffeeList = styled(motion.ul)`
   list-style: none;
 
   display: grid;
