@@ -27,7 +27,10 @@ import { zodResolver } from '@hookform/resolvers/zod';
 import { EmptyCart } from '@src/components/EmptyCart';
 import { useOrderContext } from '@src/contexts/OrderContext';
 import { useUserLocationContext } from '@src/contexts/UserLocationContext';
+import { AnimatePresence } from 'framer-motion';
+import { useEffect } from 'react';
 import { useNavigate } from 'react-router-dom';
+import { checkoutContainerFormVariant } from './animations';
 import { TotalList } from './components/TotalList';
 import { ValidationSchema, validationSchema } from './Form/schema';
 import { IFormInput } from './types';
@@ -77,18 +80,34 @@ export function Checkout() {
     navigate('/checkout/success');
   };
 
+  useEffect(() => {
+    if (cartItems.length) window.scrollTo(0, 0);
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, []);
+
   if (cartIsEmpty) {
     return (
-      <CheckoutContainerForm>
-        <EmptyCart />
-      </CheckoutContainerForm>
+      <AnimatePresence>
+        <CheckoutContainerForm
+          variants={checkoutContainerFormVariant}
+          initial="hidden"
+          animate="visible"
+        >
+          <EmptyCart />
+        </CheckoutContainerForm>
+      </AnimatePresence>
     );
   }
 
   return (
-    <CheckoutContainerForm onSubmit={handleSubmit(onSubmit)}>
+    <CheckoutContainerForm
+      onSubmit={handleSubmit(onSubmit)}
+      variants={checkoutContainerFormVariant}
+      initial="hidden"
+      animate="visible"
+    >
       <section>
-        <h2>Finish your order</h2>
+        <h2>Complete your order</h2>
         <Paper>
           <PaperHeader>
             <MapPinLine
@@ -98,7 +117,7 @@ export function Checkout() {
             />
             <div>
               <h3>Delivery address</h3>
-              <p>Inform the address where you want to receive your order</p>
+              <p>Fill in your address where you want to receive your order</p>
             </div>
           </PaperHeader>
           <FormFieldset>

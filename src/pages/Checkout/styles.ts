@@ -1,6 +1,7 @@
+import { motion } from 'framer-motion';
 import styled from 'styled-components';
 
-export const CheckoutContainerForm = styled.form`
+export const CheckoutContainerForm = styled(motion.form)`
   display: flex;
   flex-direction: column;
   gap: 3.2rem;
@@ -65,7 +66,7 @@ export const Divider = styled.div`
 export const CartList = styled.ul`
   overflow-y: scroll;
   overflow-x: auto;
-  max-height: 24.5rem;
+  max-height: 28.5rem;
 
   padding-right: 0.6rem;
 `;
