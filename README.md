@@ -1,8 +1,10 @@
 
+---
 <h3 align="center">
   Coffee Delivery
 </h3>
-<br />
+
+---
 
 <p align="center"><img width="1000" src=".github/demo.gif"/></p>
 
