@@ -35,7 +35,7 @@ export const coffees = [
     id: 5,
     src: 'src/assets/coffees/coffee-with-milk.png',
     tags: ['Traditional', 'Milk'],
-    title: 'Coffee with milk',
+    title: 'Coffee with cream',
     description: 'Half and half traditional espresso with steamed milk',
     price: 11.9
   },
@@ -74,14 +74,6 @@ export const coffees = [
   },
   {
     id: 10,
-    src: 'src/assets/coffees/mocaccino.png',
-    tags: ['Traditional', 'Milk'],
-    title: 'Mocaccino',
-    description: 'Espresso coffee with chocolate syrup, little milk and foam',
-    price: 13.5
-  },
-  {
-    id: 11,
     src: 'src/assets/coffees/hot-chocolate.png',
     tags: ['Special', 'Milk'],
     title: 'Hot chocolate',
@@ -89,7 +81,7 @@ export const coffees = [
     price: 15
   },
   {
-    id: 12,
+    id: 11,
     src: 'src/assets/coffees/cuban.png',
     tags: ['Special', 'Alcoholic', 'Iced'],
     title: 'Cuban',
@@ -97,7 +89,7 @@ export const coffees = [
     price: 16
   },
   {
-    id: 13,
+    id: 12,
     src: 'src/assets/coffees/cuban.png',
     tags: ['Special'],
     title: 'Hawaii',
@@ -105,7 +97,7 @@ export const coffees = [
     price: 15
   },
   {
-    id: 14,
+    id: 13,
     src: 'src/assets/coffees/arabic.png',
     tags: ['Special'],
     title: 'Arabic',
@@ -113,7 +105,7 @@ export const coffees = [
     price: 15
   },
   {
-    id: 15,
+    id: 14,
     src: 'src/assets/coffees/irish.png',
     tags: ['Special'],
     title: 'Irish',
